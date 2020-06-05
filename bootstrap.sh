@@ -23,10 +23,10 @@ bootstrap_echo() {
 osname=$(uname)
 
 export DOTFILES_REPO_URL="https://github.com/mquellhorst/dotfiles.git"
-export DOTFILES_DIR=$HOME/.dotfiles
-export DOTFILES_BACKUP_DIR=$HOME/.dotfiles_backup
-export BOOTSTRAP_REPO_URL="https://github.com/mquellhorst/bootstrap.git"
-export BOOTSTRAP_DIR=$HOME/Workspace
+export DOTFILES_DIR=$HOME/Workspace/dotfiles
+export DOTFILES_BACKUP_DIR=$HOME/Workspace/dotfiles_backup
+export BOOTSTRAP_REPO_URL="https://github.com/mquellhorst/workstation-bootstrap.git"
+export BOOTSTRAP_DIR=$HOME/Workspace/workstation-bootstrap
 
 export DEFAULT_DOTFILES_BRANCH="master"
 export DEFAULT_BOOTSTRAP_BRANCH="master"
