@@ -82,6 +82,7 @@ read -r -p "> " REPO_DIR
 if [ ! -n "$REPO_DIR" ]; then
   $REPO_DIR=$DEFAULT_REPO_DIR
 fi
+bootstrap_echo "$REPO_DIR"
 
 if [ ! -d "$REPO_DIR" ]; then
   mkdir -p $REPO_DIR
