@@ -90,10 +90,9 @@ if [ ! -d "$REPO_DIR" ]; then
 fi
 
 if [[ -d "$REPO_DIR"/workstation-bootstrap ]]; then
-  bootstrap_echo "Backing up old workstation-bootstrap to ${$REPO_DIR}/workstation-bootstrap_old..."
+  bootstrap_echo "Backing up old workstation-bootstrap to ${REPO_DIR}/workstation-bootstrap_old..."
   rm -rf "$REPO_DIR"/workstation-bootstrap_old 
   mv "$REPO_DIR"/workstation-bootstrap "$REPO_DIR"/workstation-bootstrap_old
- 
 fi
 
 bootstrap_echo "Cloning bootstrap repo..."
