@@ -22,7 +22,7 @@ bootstrap_echo() {
 
 osname=$(uname)
 
-export DEFAULT_REPO_DIR=$HOME/Workspace
+export DEFAULT_REPO_DIR="$HOME"/Workspace
 export COMMANDLINE_TOOLS="/Library/Developer/CommandLineTools"
 export DOTFILES_REPO_URL="https://github.com/mquellhorst/dotfiles.git"
 export BOOTSTRAP_REPO_URL="https://github.com/mquellhorst/workstation-bootstrap.git"
