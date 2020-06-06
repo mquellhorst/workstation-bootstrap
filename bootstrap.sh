@@ -90,7 +90,7 @@ if [ ! -d "$REPO_DIR" ]; then
 fi
 
 bootstrap_echo "Cloning bootstrap repo..."
-git clone "$BOOTSTRAP_REPO_URL" -b "$BOOTSTRAP_BRANCH" "$REPO_DIR"
+git clone "$BOOTSTRAP_REPO_URL" -b "$DEFAULT_BOOTSTRAP_BRANCH" "$REPO_DIR"
 
 ################################################################################
 # 1. Setup dotfiles
@@ -106,7 +106,7 @@ fi
 
 bootstrap_echo "Cloning dotfiles repo to ${REPO_DIR}/dotfiles..."
 
-git clone "$DOTFILES_REPO_URL" -b "$DOTFILES_BRANCH" "$REPO_DIR"
+git clone "$DOTFILES_REPO_URL" -b "$DEFAULT_DOTFILES_BRANCH" "$REPO_DIR"
 
 # Check if zshrc exists, if so back it up
 if [ -f "$HOME"/.zshrc ]; then
