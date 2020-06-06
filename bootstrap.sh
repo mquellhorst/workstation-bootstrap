@@ -90,8 +90,8 @@ if [ ! -d "$REPO_DIR" ]; then
 fi
 
 bootstrap_echo "Cloning bootstrap repo..."
-git clone "$BOOTSTRAP_REPO_URL" -b "$DEFAULT_BOOTSTRAP_BRANCH"
-"$REPO_DIR"/workstation-bootstrap
+git clone "$BOOTSTRAP_REPO_URL" -b "$DEFAULT_BOOTSTRAP_BRANCH" "$REPO_DIR"/workstation-bootstrap
+
 
 ################################################################################
 # 1. Setup dotfiles
