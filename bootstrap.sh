@@ -81,6 +81,7 @@ bootstrap_echo "What directory do you want to put the repo's? (%s)" "$DEFAULT_RE
 read -r -p "> " REPO_DIR
 if [ ! -n "$REPO_DIR" ]; then
   $REPO_DIR=$DEFAULT_REPO_DIR
+  export $REPO_DIR
 fi
 bootstrap_echo "$REPO_DIR"
 
