@@ -13,6 +13,7 @@ brew "xz"
 brew "curl"
 brew "git"
 brew "lua"
+brew "mas"
 brew "perl"
 brew "pyenv"
 brew "pyenv-virtualenv"
@@ -39,3 +40,5 @@ cask "sequel-pro"
 cask "spotify"
 cask "tresorit"
 cask "vlc"
+
+mas "1Password 7 - Password Manager", id: 1333542190
