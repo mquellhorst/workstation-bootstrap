@@ -22,6 +22,7 @@ bootstrap_echo() {
 
 osname=$(uname)
 
+export COMMANDLINE_TOOLS="/Library/Developer/CommandLineTools"
 export DOTFILES_REPO_URL="https://github.com/mquellhorst/dotfiles.git"
 export DOTFILES_DIR=$HOME/Workspace/dotfiles
 export DOTFILES_BACKUP_DIR=$HOME/Workspace/dotfiles_backup
