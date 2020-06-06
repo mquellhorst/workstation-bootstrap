@@ -6,7 +6,7 @@
 
 Open a terminal and run:
 ```sh
-bash <(curl -L https://raw.github.com/mquellhorst/system-bootstrap/master/bootstrap.sh)
+bash <(curl -L https://raw.github.com/mquellhorst/workstation-bootstrap/master/bootstrap.sh)
 ```
 
 ## What it sets up
