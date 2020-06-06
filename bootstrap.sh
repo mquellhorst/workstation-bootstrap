@@ -94,33 +94,6 @@ git clone "$BOOTSTRAP_REPO_URL" -b "$DEFAULT_BOOTSTRAP_BRANCH" "$REPO_DIR"/works
 
 
 ################################################################################
-# 1. Setup dotfiles
-################################################################################
-
-bootstrap_echo "Step 1: Installing dotfiles..."
-
-if [[ -d "$REPO_DIR"/dotfiles ]]; then
-  bootstrap_echo "Backing up old dotfiles to ${$REPO_DIR}/dotfiles_old..."
-  rm -rf "$REPO_DIR"/dotfiles_old 
-  mv "$REPO_DIR"/dotfiles "$REPO_DIR"/dotfiles_old
-fi
-
-bootstrap_echo "Cloning dotfiles repo to ${REPO_DIR}/dotfiles..."
-
-git clone "$DOTFILES_REPO_URL" -b "$DEFAULT_DOTFILES_BRANCH"
-"$REPO_DIR"/dotfiles
-
-# Check if zshrc exists, if so back it up
-if [ -f "$HOME"/.zshrc ]; then
-  mv "$HOME"/.zshrc "$HOME"/.zshrc_old
-fi  
-
-# shellcheck source=/dev/null
-make "$REPO_DIR"/dotfiles
-
-bootstrap_echo "Done!"
-
-################################################################################
 # 2. Install Oh-My-Zsh (http://ohmyz.sh/)
 ################################################################################
 
@@ -147,6 +120,33 @@ fi
 
 brew update
 brew bundle --file="$REPO_DIR"/workstation-bootstrap/Brewfile
+
+bootstrap_echo "Done!"
+
+################################################################################
+# 4. Setup dotfiles
+################################################################################
+
+bootstrap_echo "Step 1: Installing dotfiles..."
+
+if [[ -d "$REPO_DIR"/dotfiles ]]; then
+  bootstrap_echo "Backing up old dotfiles to ${$REPO_DIR}/dotfiles_old..."
+  rm -rf "$REPO_DIR"/dotfiles_old 
+  mv "$REPO_DIR"/dotfiles "$REPO_DIR"/dotfiles_old
+fi
+
+bootstrap_echo "Cloning dotfiles repo to ${REPO_DIR}/dotfiles..."
+
+git clone "$DOTFILES_REPO_URL" -b "$DEFAULT_DOTFILES_BRANCH"
+"$REPO_DIR"/dotfiles
+
+# Check if zshrc exists, if so back it up
+if [ -f "$HOME"/.zshrc ]; then
+  mv "$HOME"/.zshrc "$HOME"/.zshrc_old
+fi  
+
+# shellcheck source=/dev/null
+make "$REPO_DIR"/dotfiles
 
 bootstrap_echo "Done!"
 
