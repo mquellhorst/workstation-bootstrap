@@ -98,8 +98,13 @@ bootstrap_echo "Cloning dotfiles repo to ${DOTFILES_DIR}..."
 
 git clone "$DOTFILES_REPO_URL" -b "$DOTFILES_BRANCH" "$DOTFILES_DIR"
 
+# Check if zshrc exists, if so back it up
+if [ -f "$HOME/.zshrc" ]; then
+  mv "$HOME/.zshrc" "$HOME/.zshrc_old"
+fi  
+
 # shellcheck source=/dev/null
-makee $DOTFILES_DIR
+make $DOTFILES_DIR
 
 bootstrap_echo "Done!"
 
