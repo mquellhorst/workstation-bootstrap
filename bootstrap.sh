@@ -79,7 +79,7 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 bootstrap_echo "What directory do you want to put the repo's? (%s)" "$DEFAULT_REPO_DIR"
 read -r -p "> " REPO_DIR
-if [ ! -n $REPO_DIR ]; then
+if [ ! -n "$REPO_DIR" ]; then
   $REPO_DIR=$DEFAULT_REPO_DIR
 fi
 
@@ -88,7 +88,7 @@ if [ ! -d "$REPO_DIR" ]; then
 fi
 
 bootstrap_echo "Cloning bootstrap repo..."
-git clone $BOOTSTRAP_REPO_URL -b $BOOTSTRAP_BRANCH $REPO_DIR
+git clone "$BOOTSTRAP_REPO_URL" -b "$BOOTSTRAP_BRANCH" "$REPO_DIR"
 
 ################################################################################
 # 1. Setup dotfiles
@@ -96,23 +96,23 @@ git clone $BOOTSTRAP_REPO_URL -b $BOOTSTRAP_BRANCH $REPO_DIR
 
 bootstrap_echo "Step 1: Installing dotfiles..."
 
-if [[ -d $REPO_DIR/dotfiles ]]; then
-  bootstrap_echo "Backing up old dotfiles to $REPO_DIR/dotfiles_old..."
-  rm -rf $REPO_DIR/dotfiles_old 
-  mv $REPO_DIR/dotfiles $REPO_DIR/dotfiles_old
+if [[ -d "$REPO_DIR"/dotfiles ]]; then
+  bootstrap_echo "Backing up old dotfiles to ${$REPO_DIR}/dotfiles_old..."
+  rm -rf "$REPO_DIR"/dotfiles_old 
+  mv "$REPO_DIR"/dotfiles "$REPO_DIR"/dotfiles_old
 fi
 
 bootstrap_echo "Cloning dotfiles repo to ${REPO_DIR}/dotfiles..."
 
-git clone $DOTFILES_REPO_URL -b $DOTFILES_BRANCH $REPO_DIR
+git clone "$DOTFILES_REPO_URL" -b "$DOTFILES_BRANCH" "$REPO_DIR"
 
 # Check if zshrc exists, if so back it up
-if [ -f "$HOME/.zshrc" ]; then
-  mv "$HOME/.zshrc" "$HOME/.zshrc_old"
+if [ -f "$HOME"/.zshrc ]; then
+  mv "$HOME"/.zshrc "$HOME"/.zshrc_old
 fi  
 
 # shellcheck source=/dev/null
-make $REPO_DIR/dotfiles
+make "$REPO_DIR"/dotfiles
 
 bootstrap_echo "Done!"
 
@@ -142,7 +142,7 @@ if test ! $(which brew); then
 fi
 
 brew update
-brew bundle --file=$REPO_DIR/workstation-bootstrap/Brewfile
+brew bundle --file="$REPO_DIR"/workstation-bootstrap/Brewfile
 
 bootstrap_echo "Done!"
 
