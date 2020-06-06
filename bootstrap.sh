@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Turn on xtrace
+set -x
+
 ################################################################################
 # bootstrap
 #
@@ -136,7 +139,7 @@ bootstrap_echo "Done!"
 bootstrap_echo "Step 1: Installing dotfiles..."
 
 if [[ -d "$REPO_DIR"/dotfiles ]]; then
-  bootstrap_echo "Backing up old dotfiles to ${$REPO_DIR}/dotfiles_old..."
+  bootstrap_echo "Backing up old dotfiles to ${REPO_DIR}/dotfiles_old..."
   rm -rf "$REPO_DIR"/dotfiles_old 
   mv "$REPO_DIR"/dotfiles "$REPO_DIR"/dotfiles_old
 fi
