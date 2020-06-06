@@ -25,10 +25,7 @@ osname=$(uname)
 export DEFAULT_REPO_DIR=$HOME/Workspace
 export COMMANDLINE_TOOLS="/Library/Developer/CommandLineTools"
 export DOTFILES_REPO_URL="https://github.com/mquellhorst/dotfiles.git"
-export DOTFILES_DIR=$REPO_DIR/dotfiles
-export DOTFILES_BACKUP_DIR=$REPO_DIR/dotfiles_backup
 export BOOTSTRAP_REPO_URL="https://github.com/mquellhorst/workstation-bootstrap.git"
-export BOOTSTRAP_DIR=$REPO_DIR/workstation-bootstrap
 
 export DEFAULT_DOTFILES_BRANCH="master"
 export DEFAULT_BOOTSTRAP_BRANCH="master"
@@ -91,7 +88,7 @@ if [ ! -d "$REPO_DIR" ]; then
 fi
 
 bootstrap_echo "Cloning bootstrap repo..."
-git clone $BOOTSTRAP_REPO_URL -b $BOOTSTRAP_BRANCH $BOOTSTRAP_DIR
+git clone $BOOTSTRAP_REPO_URL -b $BOOTSTRAP_BRANCH $REPO_DIR
 
 ################################################################################
 # 1. Setup dotfiles
@@ -99,16 +96,15 @@ git clone $BOOTSTRAP_REPO_URL -b $BOOTSTRAP_BRANCH $BOOTSTRAP_DIR
 
 bootstrap_echo "Step 1: Installing dotfiles..."
 
-if [[ -d $DOTFILES_DIR ]]; then
-  bootstrap_echo "Backing up old dotfiles to $DOTFILES_BACKUP_DIR..."
-  rm -rf "$DOTFILES_BACKUP_DIR"
-  cp -R "$DOTFILES_DIR" "$DOTFILES_BACKUP_DIR"
-  rm -rf "$DOTFILES_DIR"
+if [[ -d $REPO_DIR/dotfiles ]]; then
+  bootstrap_echo "Backing up old dotfiles to $REPO_DIR/dotfiles_old..."
+  rm -rf $REPO_DIR/dotfiles_old 
+  mv $REPO_DIR/dotfiles $REPO_DIR/dotfiles_old
 fi
 
-bootstrap_echo "Cloning dotfiles repo to ${DOTFILES_DIR}..."
+bootstrap_echo "Cloning dotfiles repo to ${REPO_DIR}/dotfiles..."
 
-git clone "$DOTFILES_REPO_URL" -b "$DOTFILES_BRANCH" "$DOTFILES_DIR"
+git clone $DOTFILES_REPO_URL -b $DOTFILES_BRANCH $REPO_DIR
 
 # Check if zshrc exists, if so back it up
 if [ -f "$HOME/.zshrc" ]; then
@@ -116,7 +112,7 @@ if [ -f "$HOME/.zshrc" ]; then
 fi  
 
 # shellcheck source=/dev/null
-make $DOTFILES_DIR
+make $REPO_DIR/dotfiles
 
 bootstrap_echo "Done!"
 
@@ -146,7 +142,7 @@ if test ! $(which brew); then
 fi
 
 brew update
-brew bundle --file=$BOOTSTRAP_DIR/Brewfile
+brew bundle --file=$REPO_DIR/workstation-bootstrap/Brewfile
 
 bootstrap_echo "Done!"
 
@@ -156,7 +152,7 @@ bootstrap_echo "Done!"
 
 bootstrap_echo "Step 4: Configuring OS & applications..."
 
-source "$BOOTSTRAP_DIR"/macos.sh
+source $REPO_DIR/workstation-bootstrap/macos.sh
 
 bootstrap_echo "Done!"
 
