@@ -79,11 +79,11 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 bootstrap_echo "What directory do you want to put the repo's? (%s)" "$DEFAULT_REPO_DIR"
 read -r -p "> " REPO_DIR
-if [ ! -n "$REPO_DIR" ]; then
-  $REPO_DIR=$DEFAULT_REPO_DIR
-  export $REPO_DIR
+if [ -n "$REPO_DIR" ]; then
+  export REPO_DIR
+else
+  export REPO_DIR="$DEFAULT_REPO_DIR"
 fi
-bootstrap_echo "$REPO_DIR"
 
 if [ ! -d "$REPO_DIR" ]; then
   mkdir -p $REPO_DIR
