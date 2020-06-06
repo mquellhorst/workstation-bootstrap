@@ -22,12 +22,13 @@ bootstrap_echo() {
 
 osname=$(uname)
 
+export DEFAULT_REPO_DIR=$HOME/Workspace
 export COMMANDLINE_TOOLS="/Library/Developer/CommandLineTools"
 export DOTFILES_REPO_URL="https://github.com/mquellhorst/dotfiles.git"
-export DOTFILES_DIR=$HOME/Workspace/dotfiles
-export DOTFILES_BACKUP_DIR=$HOME/Workspace/dotfiles_backup
+export DOTFILES_DIR=$REPO_DIR/dotfiles
+export DOTFILES_BACKUP_DIR=$REPO_DIR/dotfiles_backup
 export BOOTSTRAP_REPO_URL="https://github.com/mquellhorst/workstation-bootstrap.git"
-export BOOTSTRAP_DIR=$HOME/Workspace/workstation-bootstrap
+export BOOTSTRAP_DIR=$REPO_DIR/workstation-bootstrap
 
 export DEFAULT_DOTFILES_BRANCH="master"
 export DEFAULT_BOOTSTRAP_BRANCH="master"
@@ -78,6 +79,16 @@ sudo --prompt="[⚠️ ] Password required to run some commands with 'sudo': " -
 
 # Keep-alive: update existing `sudo` time stamp until `.macos` has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+bootstrap_echo "What directory do you want to put the repo's? (%s)" "$DEFAULT_REPO_DIR"
+read -r -p "> " REPO_DIR
+if [ ! -n $REPO_DIR ]; then
+  $REPO_DIR=$DEFAULT_REPO_DIR
+fi
+
+if [ ! -d "$REPO_DIR" ]; then
+  mkdir -p $REPO_DIR
+fi
 
 bootstrap_echo "Cloning bootstrap repo..."
 git clone $BOOTSTRAP_REPO_URL -b $BOOTSTRAP_BRANCH $BOOTSTRAP_DIR
@@ -135,7 +146,7 @@ if test ! $(which brew); then
 fi
 
 brew update
-brew bundle
+brew bundle --file=$BOOTSTRAP_DIR/Brewfile
 
 bootstrap_echo "Done!"
 
