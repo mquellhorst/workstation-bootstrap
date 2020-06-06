@@ -152,7 +152,7 @@ bootstrap_echo "Done!"
 
 bootstrap_echo "Step 4: Configuring OS & applications..."
 
-source $REPO_DIR/workstation-bootstrap/macos.sh
+source "$REPO_DIR"/workstation-bootstrap/macos.sh
 
 bootstrap_echo "Done!"
 
