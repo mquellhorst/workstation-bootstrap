@@ -87,6 +87,7 @@ fi
 
 if [ ! -d "$REPO_DIR" ]; then
   mkdir -p $REPO_DIR
+  chmod 700 $REPO_DIR
 fi
 
 if [[ -d "$REPO_DIR"/workstation-bootstrap ]]; then
@@ -148,7 +149,10 @@ git clone "$DOTFILES_REPO_URL" -b "$DEFAULT_DOTFILES_BRANCH" "$REPO_DIR"/dotfile
 # Check if zshrc exists, if so back it up
 if [ -f "$HOME"/.zshrc ]; then
   mv "$HOME"/.zshrc "$HOME"/.zshrc_old
-fi  
+fi 
+
+# Create this dir so the .zcompdump files don't clutter  home (see .zshrc)
+mkdir -p "$HOME"/.cache/zsh
 
 # shellcheck source=/dev/null
 make -C "$REPO_DIR"/dotfiles
