@@ -5,3 +5,4 @@
 [-] note that user needs to install xcode
 	- do this in bootstrap.sh, can we check if xcode is installed
 	- put it in the README
+[-] show speaker symbol for setting volume in the menu bar
