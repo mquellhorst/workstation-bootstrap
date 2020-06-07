@@ -23,6 +23,7 @@ brew "sqlite"
 brew "stow"
 brew "tree"
 brew "vim"
+brew "weechat"
 
 tap "homebrew/cask-fonts"
 
