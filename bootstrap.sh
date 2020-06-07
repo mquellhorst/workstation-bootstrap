@@ -134,7 +134,7 @@ bootstrap_echo "Done!"
 # 4. Setup dotfiles
 ################################################################################
 
-bootstrap_echo "Step 1: Installing dotfiles..."
+bootstrap_echo "Step 4: Installing dotfiles..."
 
 if [[ -d "$REPO_DIR"/dotfiles ]]; then
   bootstrap_echo "Backing up old dotfiles to ${REPO_DIR}/dotfiles_old..."
@@ -153,6 +153,9 @@ fi
 
 # Create this dir so the .zcompdump files don't clutter  home (see .zshrc)
 mkdir -p "$HOME"/.cache/zsh
+# Secure directories
+# See: https://stackoverflow.com/questions/13762280/zsh-compinit-insecure-directories
+compaudit | xargs chmod g-w
 
 # shellcheck source=/dev/null
 make -C "$REPO_DIR"/dotfiles
