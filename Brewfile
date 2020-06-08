@@ -32,6 +32,7 @@ tap "homebrew/cask-fonts"
 # We use meslo for now
 cask "alacritty"
 cask "discord"
+cask "figma"
 cask "firefox"
 cask "font-hack-nerd-font"
 cask "font-meslo-for-powerline"
