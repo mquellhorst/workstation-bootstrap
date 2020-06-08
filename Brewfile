@@ -43,3 +43,4 @@ cask "tresorit"
 cask "vlc"
 
 mas "1Password 7 - Password Manager", id: 1333542190
+mas "Affinity Designer", id: 824171161
