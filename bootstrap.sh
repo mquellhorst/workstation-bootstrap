@@ -131,10 +131,20 @@ brew bundle --file="$REPO_DIR"/workstation-bootstrap/Brewfile
 bootstrap_echo "Done!"
 
 ################################################################################
-# 4. Setup dotfiles
+# 4. Setup NVM
 ################################################################################
 
-bootstrap_echo "Step 4: Installing dotfiles..."
+bootstrap_echo "Step 4: Installing NVM..."
+
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+
+bootstrap_echo "Done!"
+
+################################################################################
+# 5. Setup dotfiles
+################################################################################
+
+bootstrap_echo "Step 5: Installing dotfiles..."
 
 if [[ -d "$REPO_DIR"/dotfiles ]]; then
   bootstrap_echo "Backing up old dotfiles to ${REPO_DIR}/dotfiles_old..."
@@ -163,10 +173,10 @@ make -C "$REPO_DIR"/dotfiles
 bootstrap_echo "Done!"
 
 ################################################################################
-# 4. Configure MacOs
+# 6. Configure MacOs
 ################################################################################
 
-bootstrap_echo "Step 4: Configuring OS & applications..."
+bootstrap_echo "Step 6: Configuring OS & applications..."
 
 source "$REPO_DIR"/workstation-bootstrap/macos.sh
 
