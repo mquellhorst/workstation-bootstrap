@@ -43,6 +43,7 @@ cask "iterm2"
 cask "sequel-pro"
 cask "spotify"
 cask "tresorit"
+cask "visual-studio-code"
 cask "vlc"
 
 mas "1Password 7 - Password Manager", id: 1333542190
