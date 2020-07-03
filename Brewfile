@@ -19,6 +19,7 @@ brew "perl"
 brew "pyenv"
 brew "pyenv-virtualenv"
 brew "python" # dep of vim, we'll be using pyenv
+brew "ripgrep"
 brew "ruby"
 brew "sqlite"
 brew "stow"
